@@ -1,3 +1,3 @@
 #!/usr/bin/env bash
 
-echo $PWD
+cat test | tr ' ' '/n' | sort | uniq -c | sort -n
