@@ -2,4 +2,6 @@
 
 read -p "Enter a word to replace with: " word
 
-sed -i "s|India|$word|g" test_replace.txt
+replace=$(word)
+
+sed -i "s|India|$replace|g" test_replace.txt
