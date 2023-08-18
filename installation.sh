@@ -24,7 +24,7 @@ VALIDATE()
         then
                 echo -e "$G $i Installation success $W"
         else
-                echo -e "$R $i Installation failed $W"
+                echo -e "$R $i Installation failure $W"
         fi
 }
 
