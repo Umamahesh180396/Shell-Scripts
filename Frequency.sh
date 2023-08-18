@@ -1,3 +1,3 @@
 #!/usr/bin/env bash
 
-tr ' ' '\n' | sort | uniq -c | sort -n < test
+cat test | tr ' ' '\n' | sort | uniq -c | sort -n
