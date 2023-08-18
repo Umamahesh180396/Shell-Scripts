@@ -32,15 +32,19 @@ DATE=$(date +%F)
 LOG_FILE=/tmp/$DATE.log
 packages=("$@")
 
-
 for i in "${packages[@]}"
 do
-        which $i &> /dev/null
-        if [[ $? -ne 0 ]]
+        if [[ yum list available | grep $i ]]
         then
-           yum install $i -y &>> $LOG_FILE
-           VALIDATE $i
+                which $i &> /dev/null
+                if [[ $? -ne 0 ]]
+                then
+                        yum install $i -y &>> $LOG_FILE
+                        VALIDATE $i
+                else
+                echo "$i already installed"
+                fi
         else
-           echo "$i already installed"
+                echo "$R Given packages not available. Please check $W"
         fi
 done
