@@ -34,7 +34,8 @@ packages=("$@")
 
 for i in "${packages[@]}"
 do
-        if [[ yum list available | grep $i ]]
+        yum list available | grep $i &>> /dev/null
+        if [[ $? -eq 0 ]]
         then
                 which $i &> /dev/null
                 if [[ $? -ne 0 ]]
