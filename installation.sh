@@ -46,6 +46,6 @@ do
                 echo "$i already installed"
                 fi
         else
-                echo -e "$R Given packages not available. Please check $W"
+                echo -e "$R Given package $i not available. Please check $W"
         fi
 done
