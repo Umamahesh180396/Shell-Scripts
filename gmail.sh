@@ -1,7 +1,7 @@
 #!/usr/bin/env bash
 
-read -s -p "Please enter password: " PASSWORD
-read -p "Please enter gmail account name: " EMAIL
+read -s -p "Please enter password: $(echo $'\n> ') " PASSWORD
+read -p "Please enter gmail account name: $(echo $'\n> ') " EMAIL
 
 DATE=$(date +%F)
 LOG_PATH=/tmp
@@ -22,10 +22,10 @@ VALIDATE()
 {
     if [[ $? -ne 0 ]]
         then
-                echo -e "$1 $G Failure $W"
+                echo -e "$1 $R Failure $W"
                 exit 2
         else
-                echo -e "$1 $R Success $W"
+                echo -e "$1 $G Success $W"
         fi
 }
 
