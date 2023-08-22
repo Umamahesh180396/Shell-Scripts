@@ -3,7 +3,7 @@
 R="\e[31m"
 G="\e[32m"
 W="\033[0m"
-
+Y="\e[33m"
 
 if [[ $(id -u) -ne 0 ]]
 then
@@ -33,7 +33,7 @@ packages=("$@")
 
 for i in "${packages[@]}"
 do
-        yum list validate | grep $i &>> /dev/null
+        yum list validate $i &>> /dev/null
         if [[ $? -eq 0 ]]
         then
                 which $i &> /dev/null
@@ -42,7 +42,7 @@ do
                         yum install $i -y &>> $LOG_FILE
                         VALIDATE $i
                 else
-                echo "$i already installed"
+                echo -e "$Y $i already installed $W"
                 fi
         else
                 echo -e "$R Given package $i not available. Please check $W"
