@@ -1,7 +1,7 @@
 #!/usr/bin/env bash
 
-read -s -p "Please enter password: $(echo $'\n> ') " PASSWORD
-read -p "Please enter gmail account name: $(echo $'\n> ') " EMAIL
+read -s -p "Please enter password: `echo $'\n> '` " PASSWORD
+read -p "Please enter gmail account name: `echo $'\n> '` " EMAIL
 
 DATE=$(date +%F)
 LOG_PATH=/tmp
@@ -86,7 +86,7 @@ VALIDATE "PASSWORD mapping...."
 
 #Sending mail Run the following command to send mail:
 
-echo "This is a test mail & Date $DATE" | mail -s "test message" $EMAIL
+echo "This is a test mail for gmail installation & Date $DATE" | mail -s "test message" $EMAIL
 
 echo -e "$G Email has been sent $W"
 
