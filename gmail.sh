@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
 
-read -p -s "Please enter password: " PASSWORD
+read -s -p "Please enter password: " PASSWORD
 read -p "Please enter gmail account name: " EMAIL
 
 DATE=$(date +%F)
