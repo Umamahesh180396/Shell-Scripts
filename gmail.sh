@@ -1,7 +1,10 @@
 #!/usr/bin/env bash
 
-read -s -p "Please enter password: `echo $'\n> '` " PASSWORD
-read -p "Please enter gmail account name: `echo $'\n> '` " EMAIL
+cr=$(echo $'\n.')
+cr=${cr%.}
+
+read -s -p "Please enter password: $cr" PASSWORD
+read -p "Please enter gmail account name: $cr" EMAIL
 
 DATE=$(date +%F)
 LOG_PATH=/tmp
