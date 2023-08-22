@@ -28,19 +28,19 @@ VALIDATE()
         fi
 }
 
-yum update -y --exclude=kernel* &>> /dev/null
+yum update -y --exclude=kernel* &>> LOG_FILE
 
 VALIDATE
 
-yum -y install postfix cyrus-sasl-plain mailx &>> /dev/null
+yum -y install postfix cyrus-sasl-plain mailx &>> LOG_FILE
 
 VALIDATE
 
-systemctl restart postfix &>> /dev/null
+systemctl restart postfix &>> LOG_FILE
 
 VALIDATE
 
-systemctl enable postfix &>> /dev/null
+systemctl enable postfix &>> LOG_FILE
 
 VALIDATE
 
