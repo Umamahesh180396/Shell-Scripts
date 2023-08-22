@@ -1,11 +1,7 @@
 #!/usr/bin/env bash
 
 read -p "Please enter password: " PASSWORD
-
-echo $PASSWORD
 read -p "Please enter gmail account name: " EMAIL
-
-echo $EMAIL
 
 DATE=$(date +%F)
 LOG_PATH=/tmp
@@ -59,11 +55,13 @@ smtp_sasl_tls_security_options = noanonymous
 
 touch /etc/postfix/sasl_passwd
 
-echo "[smtp.gmail.com]:587 Mahesh:$PASSWORD" > /etc/postfix/sasl_passwd
+echo "[smtp.gmail.com]:587 maheshthoa2136:$PASSWORD" > /etc/postfix/sasl_passwd
 
 postmap /etc/postfix/sasl_passwd
 
 echo "This is a test mail & Date $DATE" | mail -s "test message" $EMAIL
+
+echo -e "$G Email has been sent $W"
 
 
 
