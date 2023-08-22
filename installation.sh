@@ -1,6 +1,5 @@
-#!/usr/bin/env bash
+#!/bin/bash
 
-clear
 R="\e[31m"
 G="\e[32m"
 W="\033[0m"
@@ -34,7 +33,7 @@ packages=("$@")
 
 for i in "${packages[@]}"
 do
-        yum list available | grep $i &>> /dev/null
+        yum list validate | grep $i &>> /dev/null
         if [[ $? -eq 0 ]]
         then
                 which $i &> /dev/null
