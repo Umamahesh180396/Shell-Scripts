@@ -1,7 +1,11 @@
 #!/usr/bin/env bash
 
 read -p "Please enter password: " PASSWORD
+
+echo $PASSWORD
 read -p "Please enter gmail account name: " EMAIL
+
+echo $EMAIL
 
 DATE=$(date +%F)
 LOG_PATH=/tmp
@@ -28,19 +32,19 @@ VALIDATE()
         fi
 }
 
-yum update -y --exclude=kernel* &>> LOG_FILE
+yum update -y --exclude=kernel* &>> $LOG_FILE
 
 VALIDATE
 
-yum -y install postfix cyrus-sasl-plain mailx &>> LOG_FILE
+yum -y install postfix cyrus-sasl-plain mailx &>> $LOG_FILE
 
 VALIDATE
 
-systemctl restart postfix &>> LOG_FILE
+systemctl restart postfix &>> $LOG_FILE
 
 VALIDATE
 
-systemctl enable postfix &>> LOG_FILE
+systemctl enable postfix &>> $LOG_FILE
 
 VALIDATE
 
