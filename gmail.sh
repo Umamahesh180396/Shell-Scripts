@@ -55,7 +55,7 @@ smtp_sasl_tls_security_options = noanonymous
 
 touch /etc/postfix/sasl_passwd
 
-echo "[smtp.gmail.com]:587 maheshthoa2136:$PASSWORD" > /etc/postfix/sasl_passwd
+echo "[smtp.gmail.com]:587 maheshthota2136:$PASSWORD" > /etc/postfix/sasl_passwd
 
 postmap /etc/postfix/sasl_passwd
 
