@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
 
-read -p "Please enter password: " PASSWORD
+read -p -s "Please enter password: " PASSWORD
 read -p "Please enter gmail account name: " EMAIL
 
 DATE=$(date +%F)
@@ -20,29 +20,40 @@ fi
 
 VALIDATE()
 {
-    if [[ $? -eq 0 ]]
+    if [[ $? -ne 0 ]]
         then
-                echo -e "$G Success $W"
+                echo -e "$1 $G Failure $W"
+                exit 2
         else
-                echo -e "$R Failure $W"
+                echo -e "$1 $R Success $W"
         fi
 }
 
+#Update yum repo
+
 yum update -y --exclude=kernel* &>> $LOG_FILE
 
-VALIDATE
+VALIDATE "Update yum repo...."
+
+#Install Postfix, the SASL authentication framework, and mailx.
 
 yum -y install postfix cyrus-sasl-plain mailx &>> $LOG_FILE
 
-VALIDATE
+VALIDATE "Install Postfix, the SASL authentication framework, and mailx...."
+
+#Restart Postfix to detect the SASL framework
 
 systemctl restart postfix &>> $LOG_FILE
 
-VALIDATE
+VALIDATE "Restart of postfix...."
+
+#Start Postfix on boot
 
 systemctl enable postfix &>> $LOG_FILE
 
-VALIDATE
+VALIDATE "Enable postfix...."
+
+#Appending content to /etc/postfix/main.cf
 
 echo "
 relayhost = [smtp.gmail.com]:587
@@ -53,11 +64,27 @@ smtp_sasl_security_options = noanonymous
 smtp_sasl_tls_security_options = noanonymous
 " >> /etc/postfix/main.cf 
 
+VALIDATE "Appending content...."
+
+# Create a sasl_passwd under /etc/postfix
+
 touch /etc/postfix/sasl_passwd
+
+VALIDATE "sasl_passwd file creation...."
+
+#Add gmail id and password from google management app password
 
 echo "[smtp.gmail.com]:587 maheshthota2136:$PASSWORD" > /etc/postfix/sasl_passwd
 
+VALIDATE "Adding gmail ID and password...."
+
+#Create a Postfix lookup table from the sasl_passwd text file by running the following command
+
 postmap /etc/postfix/sasl_passwd
+
+VALIDATE "PASSWORD mapping...."
+
+#Sending mail Run the following command to send mail:
 
 echo "This is a test mail & Date $DATE" | mail -s "test message" $EMAIL
 
