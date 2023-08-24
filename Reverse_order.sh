@@ -1,5 +1,7 @@
 #!/usr/bin/env bash
 
+rm -f replaced.txt
+
 echo "Before reversing the order"
 
 echo "--------------------------- \\n"
