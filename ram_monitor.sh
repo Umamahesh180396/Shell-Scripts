@@ -4,7 +4,7 @@ DATE=$(date +%F)
 LOG_PATH=/tmp
 SCRIPT_NAME="$0"
 LOG_FILE=/tmp/$SCRIPT_NAME-$DATE.log
-THRESHOLD_VALUE=100
+THRESHOLD_VALUE=400
 TO_ADDRESS="maheshthota2136@gmail.com"
 
 R="\e[31m"
