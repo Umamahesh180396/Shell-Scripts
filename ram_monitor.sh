@@ -17,10 +17,10 @@ AVAILABLE_MEMORY=$(free -m | grep Mem | awk '{print $4}')
 
 if [[ $AVAILABLE_MEMORY -le $THRESHOLD_VALUE ]]
 then
-    echo -e "$R Available memory: $AVAILABLE_MEMORY $W" &>>LOG_FILE
-    echo -e "$R Memory limit exceeded...Sending alert $W" &>> LOG_FILE
-    echo "There is high memory usage identified on $(hostname) and available memory: $AVAILABLE_MEMORY on $DATE" | mail -s "RAM_MONITORING" $TO_ADDRESS &>> LOG_FILE
+    echo -e "$R Available memory: $AVAILABLE_MEMORY $W" &>> $LOG_FILE
+    echo -e "$R Memory limit exceeded...Sending alert $W" &>> $LOG_FILE
+    echo "There is high memory usage identified on $(hostname) and available memory: $AVAILABLE_MEMORY on $DATE" | mail -s "RAM_MONITORING" $TO_ADDRESS &>> $LOG_FILE
 else
-    echo "$G Available memory: $AVAILABLE_MEMORY $W" &>>LOG_FILE
-    echo "$G Usage is under threshold value $W" &>>LOG_FILE
+    echo "$G Available memory: $AVAILABLE_MEMORY $W" &>> $LOG_FILE
+    echo "$G Usage is under threshold value $W" &>> $LOG_FILE
 fi
