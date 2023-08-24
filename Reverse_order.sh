@@ -8,6 +8,8 @@ echo "---------------------------"
 
 cat test_replace.txt
 
+echo -e "\n"
+
 rev test_replace.txt &>> replaced.txt 
 
 echo "After reversing"
