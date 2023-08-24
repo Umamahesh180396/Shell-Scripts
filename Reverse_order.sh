@@ -6,7 +6,7 @@ echo "---------------------------"
 
 cat test_replace.txt
 
-rev | test_replace.txt
+rev test_replace.txt
 
 echo "After reversing"
 
