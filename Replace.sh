@@ -1,7 +1,5 @@
 #!/usr/bin/env bash
 
-read -p "Enter a word to replace with: " word
+read -p "Enter a word to replace with: " WORD
 
-replace=$word
-
-sed -i "s|India|$replace|g" test_replace.txt
+sed -i "s/India/$WORD/g" test_replace.txt
