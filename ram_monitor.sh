@@ -1,5 +1,4 @@
 #!/usr/bin/env bash
-set -x
 
 DATE=$(date +%F)
 LOG_PATH=/tmp
